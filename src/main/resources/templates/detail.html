@@ -5,22 +5,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Liste de films !</h1>
-<table>
-<thead>
-<tr>
-<td>Titre</td>
-<td>Année</td>
-<td>Durée</td>
-<td>Synopsis</td>
-<tr>
-</thead>
-<tr th:each="film: ${films}">
-<td th:text="${film.titre}" />
-<td th:text="${film.annee}" />
-<td th:text="${film.duree}" />
-<td th:text="${film.synopsis}" />
-</tr>
-</table>
+	<h1>Liste de films !</h1>
+
+	<div th:each="f: ${film}">
+		<h1 th:text="${f.titre}"></h1>
+		<p th:text="${f.annee}"></p>
+		<p th:text="${f.duree}"></p>
+		<p th:text="${f.synopsis}"></p>
+	</div>
+
 </body>
 </html>

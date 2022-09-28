@@ -10,9 +10,10 @@ import fr.eni.filmotheque.bo.Film;
 @Service
 public class FilmServiceImpl implements FilmService {
 
+	private List<Film> films = new ArrayList<>();
+
 	@Override
 	public List<Film> getListFilm() {
-		List<Film> films = new ArrayList<>();
 		films.add(new Film(1, "Fight Club", 1999, 139,
 				"Insomniaque, désillusionné par sa vie personnelle et professionnelle, un jeune cadre expert en assurances, mène une vie monotone et sans saveur."));
 		films.add(new Film(2, "Pulp Fiction", 1994, 154,
@@ -21,6 +22,20 @@ public class FilmServiceImpl implements FilmService {
 				"Alors que la vie sur Terre touche à sa fin, un groupe d’explorateurs s’attelle à la mission la plus importante de l’histoire de l’humanité : franchir les limites de notre galaxie pour savoir si l’homme peut vivre sur une autre planète…"));
 
 		return films;
+	}
+
+	@Override
+	public Film getFilm(List<Film> films, int id) {
+
+		Film film = null;
+
+		for (Film f : films) {
+			if (f.getId() == id) {
+				film = f;
+			}
+		}
+
+		return film;
 	}
 
 }

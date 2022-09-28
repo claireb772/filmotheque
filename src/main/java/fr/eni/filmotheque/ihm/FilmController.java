@@ -34,6 +34,9 @@ public class FilmController {
 	@GetMapping("/detail/{id}")
 	public String getDetail(@PathVariable int id, Model model) {
 
+		Film film = filmService.getFilm(filmService.getListFilm(), id);
+		model.addAttribute("film", film);
+
 		return "detail";
 	}
 

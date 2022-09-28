@@ -8,4 +8,6 @@ public interface FilmService {
 
 	public List<Film> getListFilm();
 
+	public Film getFilm(List<Film> films, int id);
+
 }
