@@ -10,10 +10,9 @@ import fr.eni.filmotheque.bo.Film;
 @Service
 public class FilmServiceImpl implements FilmService {
 
-	private List<Film> films = new ArrayList<>();
-
 	@Override
 	public List<Film> getListFilm() {
+		List<Film> films = new ArrayList<>();
 		films.add(new Film(1, "Fight Club", 1999, 139,
 				"Insomniaque, désillusionné par sa vie personnelle et professionnelle, un jeune cadre expert en assurances, mène une vie monotone et sans saveur."));
 		films.add(new Film(2, "Pulp Fiction", 1994, 154,

@@ -5,8 +5,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Liste de films !</h1>
-
 	<div th:each="f: ${film}">
 		<h1 th:text="${f.titre}"></h1>
 		<p th:text="${f.annee}"></p>
