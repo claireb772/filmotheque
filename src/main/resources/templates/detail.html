@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Liste de films !</h1>
+<table>
+<thead>
+<tr>
+<td>Titre</td>
+<td>Année</td>
+<td>Durée</td>
+<td>Synopsis</td>
+<tr>
+</thead>
+<tr th:each="film: ${films}">
+<td th:text="${film.titre}" />
+<td th:text="${film.annee}" />
+<td th:text="${film.duree}" />
+<td th:text="${film.synopsis}" />
+</tr>
+</table>
+</body>
+</html>
