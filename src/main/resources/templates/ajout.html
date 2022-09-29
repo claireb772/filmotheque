@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
@@ -31,6 +31,14 @@
 			<label for="Synopsis">Synopsis</label> <input th:field="*{synopsis}"
 				type="text" class="form-control" id="synopsis"
 				placeholder="synopsis">
+		</div>
+		<div class="form-group">
+		<label	for="selectActors">Acteur(s) : </label>
+		<select th:field="*{participants}"
+					id="selectActors" multiple>
+						<option th:each="current : ${@participants}"
+							th:text=" ${current.prenom} + ' ' + ${current.nom}" th:value="${current.id}"></option>
+				</select>
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>

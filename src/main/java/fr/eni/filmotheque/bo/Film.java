@@ -1,5 +1,7 @@
 package fr.eni.filmotheque.bo;
 
+import java.util.List;
+
 public class Film {
 
 	private long id;
@@ -8,6 +10,7 @@ public class Film {
 	private int duree;
 	private String synopsis;
 	private int idImage;
+	private List<Participant> participants;
 
 	public Film(long id, String titre, int annee, int duree, String synopsis, int idImage) {
 		super();
@@ -78,6 +81,14 @@ public class Film {
 
 	public void setIdImage(int idImage) {
 		this.idImage = idImage;
+	}
+
+	public List<Participant> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(List<Participant> participants) {
+		this.participants = participants;
 	}
 
 	@Override
