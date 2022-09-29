@@ -10,4 +10,6 @@ public interface FilmService {
 
 	public Film getFilm(List<Film> films, int id);
 
+	public int getLastFilmId(List<Film> films);
+
 }

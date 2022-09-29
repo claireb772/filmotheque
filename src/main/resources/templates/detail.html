@@ -10,7 +10,7 @@
 
 
 <div class="card" style="width: 18rem;" th:each="f: ${film}">
-  <img th:src=@{/img/{id}.jpg(id=${f.id})} class="card-img-top" alt="...">
+  <img th:src=@{/img/{id}.jpg(id=${f.idImage})} class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title" th:text="${f.titre}"></h5>
     <p class="card-text" th:text="${f.synopsis}"></p>

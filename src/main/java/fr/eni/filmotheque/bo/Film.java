@@ -7,14 +7,25 @@ public class Film {
 	private int annee;
 	private int duree;
 	private String synopsis;
+	private int idImage;
 
-	public Film(long id, String titre, int annee, int duree, String synopsis) {
+	public Film(long id, String titre, int annee, int duree, String synopsis, int idImage) {
 		super();
 		this.id = id;
 		this.titre = titre;
 		this.annee = annee;
 		this.duree = duree;
 		this.synopsis = synopsis;
+		this.idImage = idImage;
+	}
+
+	public Film(String titre, int annee, int duree, String synopsis, int idImage) {
+		super();
+		this.titre = titre;
+		this.annee = annee;
+		this.duree = duree;
+		this.synopsis = synopsis;
+		this.idImage = idImage;
 	}
 
 	public Film() {
@@ -59,6 +70,19 @@ public class Film {
 
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
+	}
+
+	public int getIdImage() {
+		return idImage;
+	}
+
+	public void setIdImage(int idImage) {
+		this.idImage = idImage;
+	}
+
+	@Override
+	public String toString() {
+		return "Film [id=" + id + ", titre=" + titre + ", annee=" + annee + ", duree=" + duree + "]";
 	}
 
 }
