@@ -26,6 +26,7 @@ public class Film {
 	private int idImage;
 	private List<Participant> acteurs;
 
+	@NotNull
 	private Participant realisateur;
 	private Genre genre;
 
