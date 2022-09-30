@@ -1,16 +1,32 @@
 package fr.eni.filmotheque.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import fr.eni.filmotheque.bo.Film;
+import fr.eni.filmotheque.bo.Genre;
 
 @Service
 public class FilmServiceImpl implements FilmService {
 
 	private List<Film> films;
+	private List<Genre> genres;
+	private Map<Integer, Genre> mapGenres;
+
+	public FilmServiceImpl() {
+		genres = new ArrayList<>();
+		genres.add(new Genre(1, "Drame"));
+		genres.add(new Genre(2, "Comédie"));
+		genres.add(new Genre(3, "Science-fiction"));
+		genres.add(new Genre(4, "Aventure"));
+
+		mapGenres = new HashMap<Integer, Genre>();
+		genres.forEach(m -> mapGenres.put((int) m.getId(), m));
+	}
 
 	@Override
 	public List<Film> getListFilm() {
@@ -55,6 +71,16 @@ public class FilmServiceImpl implements FilmService {
 		id = (int) film.getId();
 
 		return id;
+	}
+
+	@Override
+	public List<Genre> getListGenre() {
+		return genres;
+	}
+
+	@Override
+	public Map<Integer, Genre> getMapGenres() {
+		return mapGenres;
 	}
 
 }

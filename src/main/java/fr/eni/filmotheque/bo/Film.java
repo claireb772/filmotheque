@@ -10,7 +10,9 @@ public class Film {
 	private int duree;
 	private String synopsis;
 	private int idImage;
-	private List<Participant> participants;
+	private List<Participant> acteurs;
+	private Participant realisateur;
+	private Genre genre;
 
 	public Film(long id, String titre, int annee, int duree, String synopsis, int idImage) {
 		super();
@@ -83,12 +85,28 @@ public class Film {
 		this.idImage = idImage;
 	}
 
-	public List<Participant> getParticipants() {
-		return participants;
+	public List<Participant> getActeurs() {
+		return acteurs;
 	}
 
-	public void setParticipants(List<Participant> participants) {
-		this.participants = participants;
+	public void setActeurs(List<Participant> acteurs) {
+		this.acteurs = acteurs;
+	}
+
+	public Participant getRealisateur() {
+		return realisateur;
+	}
+
+	public void setRealisateur(Participant realisateur) {
+		this.realisateur = realisateur;
+	}
+
+	public Genre getGenre() {
+		return genre;
+	}
+
+	public void setGenre(Genre genre) {
+		this.genre = genre;
 	}
 
 	@Override
