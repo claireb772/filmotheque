@@ -2,19 +2,37 @@ package fr.eni.filmotheque.bo;
 
 import java.util.List;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class Film {
 
 	private long id;
+
+	@NotBlank(message = "Le titre est obligatoire")
 	private String titre;
+
+	@NotNull(message = "L'année est obligatoire")
 	private int annee;
+
+	@Min(value = 0, message = "La durée doit être supérieure à zéro")
 	private int duree;
+
+	@Length(min = 20, max = 250, message = "Le synopsis doit faire entre 20 et 250 caractères")
 	private String synopsis;
 	private int idImage;
 	private List<Participant> acteurs;
+
 	private Participant realisateur;
 	private Genre genre;
 
-	public Film(long id, String titre, int annee, int duree, String synopsis, int idImage) {
+	public Film(long id, @NotBlank(message = "Le titre est obligatoire") String titre, int annee,
+			@Min(value = 0, message = "La durée doit être supérieure à zéro") int duree,
+			@Length(min = 20, max = 250, message = "Le synopsis doit faire entre 20 et 250 caractères") String synopsis,
+			int idImage) {
 		super();
 		this.id = id;
 		this.titre = titre;
@@ -24,13 +42,32 @@ public class Film {
 		this.idImage = idImage;
 	}
 
-	public Film(String titre, int annee, int duree, String synopsis, int idImage) {
+	public Film(@NotBlank(message = "Le titre est obligatoire") String titre, int annee,
+			@Min(value = 0, message = "La durée doit être supérieure à zéro") int duree,
+			@Length(min = 20, max = 250, message = "Le synopsis doit faire entre 20 et 250 caractères") String synopsis,
+			int idImage) {
 		super();
 		this.titre = titre;
 		this.annee = annee;
 		this.duree = duree;
 		this.synopsis = synopsis;
 		this.idImage = idImage;
+	}
+
+	public Film(long id, @NotBlank(message = "Le titre est obligatoire") String titre, int annee,
+			@Min(value = 0, message = "La durée doit être supérieure à zéro") int duree,
+			@Length(min = 20, max = 250, message = "Le synopsis doit faire entre 20 et 250 caractères") String synopsis,
+			int idImage, List<Participant> acteurs, Participant realisateur, Genre genre) {
+		super();
+		this.id = id;
+		this.titre = titre;
+		this.annee = annee;
+		this.duree = duree;
+		this.synopsis = synopsis;
+		this.idImage = idImage;
+		this.acteurs = acteurs;
+		this.realisateur = realisateur;
+		this.genre = genre;
 	}
 
 	public Film() {
