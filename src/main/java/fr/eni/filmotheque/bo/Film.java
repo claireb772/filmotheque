@@ -2,8 +2,15 @@ package fr.eni.filmotheque.bo;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity()
 public class Film {
 
+	@Id
+	@GeneratedValue
 	private long id;
 	private String titre;
 	private int annee;
