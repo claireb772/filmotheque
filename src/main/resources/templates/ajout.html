@@ -1,4 +1,5 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
@@ -13,50 +14,86 @@
 	<h1>Ajouter un film</h1>
 
 	<form th:action="@{/ajouter}" th:object=${film} method="post">
-		<div class="form-group">
-			<label for="titre">Titre</label> <input th:field="*{titre}" type="text"
-				class="form-control" id="titre" placeholder="Titre"> 
+
+		<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+			<p th:text="#{ajout.erreurs}">Message d'erreur</p>
 		</div>
+
+		<div class="form-group">
+			<label for="titre">Titre</label> <input th:field="*{titre}"
+				type="text" class="form-control" id="titre" placeholder="Titre">
+		</div>
+		<span class="text-danger col-6" th:if="${#fields.hasErrors('titre')}">
+			<ul>
+				<li th:each="erreur: ${#fields.errors('titre')}" th:text="${erreur}"></li>
+			</ul>
+		</span>
+
 		<div class="form-group">
 			<label for="Annee">Année</label> <input th:field="*{annee}"
-				type="text" class="form-control" id="Annee"
-				placeholder="Année">
+				type="number" class="form-control" id="Annee" placeholder="Année">
 		</div>
+
+		<span class="text-danger col-6" th:if="${#fields.hasErrors('annee')}">
+			<ul>
+				<li th:each="erreur: ${#fields.errors('annee')}" th:text="${erreur}"></li>
+			</ul>
+		</span>
+
+
 		<div class="form-group">
 			<label for="duree">Durée</label> <input th:field="*{duree}"
-				type="text" class="form-control" id="duree"
-				placeholder="Durée">
+				type="number" class="form-control" id="duree" placeholder="Durée">
 		</div>
+
+		<span class="text-danger col-6" th:if="${#fields.hasErrors('duree')}">
+			<ul>
+				<li th:each="erreur: ${#fields.errors('duree')}" th:text="${erreur}"></li>
+			</ul>
+		</span>
+
 		<div class="form-group">
 			<label for="Synopsis">Synopsis</label> <input th:field="*{synopsis}"
 				type="text" class="form-control" id="synopsis"
 				placeholder="synopsis">
 		</div>
+
+		<span class="text-danger col-6"
+			th:if="${#fields.hasErrors('synopsis')}">
+			<ul>
+				<li th:each="erreur: ${#fields.errors('synopsis')}"
+					th:text="${erreur}"></li>
+			</ul>
+		</span>
+
 		<div class="form-group">
-			<label for="RealisateurNom">Realisateur (nom)</label> <input th:field="*{realisateur.nom}"
-				type="text" class="form-control" id="realisateurNom"
-				placeholder="Nom">
+			<label for="RealisateurNom">Realisateur (nom)</label> <input
+				th:field="*{realisateur.nom}" type="text" class="form-control"
+				id="realisateurNom" placeholder="Nom">
+		</div>
+
+
+		<div class="form-group">
+			<label for="RealisateurPrenom">Realisateur (prenom)</label> <input
+				th:field="*{realisateur.prenom}" type="text" class="form-control"
+				id="realisateurPrenom" placeholder="Prenom">
+		</div>
+
+
+		<div class="form-group">
+			<label for="selectActors">Acteur(s) : </label> <select
+				th:field="*{acteurs}" id="selectActors" multiple>
+				<option th:each="current : ${@acteurs}"
+					th:text=" ${current.prenom} + ' ' + ${current.nom}"
+					th:value="${current.id}"></option>
+			</select>
 		</div>
 		<div class="form-group">
-			<label for="RealisateurPrenom">Realisateur (prenom)</label> <input th:field="*{realisateur.prenom}"
-				type="text" class="form-control" id="realisateurPrenom"
-				placeholder="Prenom">
-		</div>
-		<div class="form-group">
-		<label	for="selectActors">Acteur(s) : </label>
-		<select th:field="*{acteurs}"
-					id="selectActors" multiple>
-						<option th:each="current : ${@acteurs}"
-							th:text=" ${current.prenom} + ' ' + ${current.nom}" th:value="${current.id}"></option>
-				</select>
-		</div>
-		<div class="form-group">
-		<label	for="selectGenre">Genre : </label>
-		<select th:field="*{genre}"
-					id="selectGenre">
-						<option th:each="current : ${@genres}"
-							th:text=" ${current.libelle}" th:value="${current.id}"></option>
-				</select>
+			<label for="selectGenre">Genre : </label> <select th:field="*{genre}"
+				id="selectGenre">
+				<option th:each="current : ${@genres}" th:text=" ${current.libelle}"
+					th:value="${current.id}"></option>
+			</select>
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
