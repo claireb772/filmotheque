@@ -34,6 +34,15 @@ public class FilmServiceImpl implements FilmService {
 		this.filmRepository = filmRepository;
 		this.genreRepository = genreRepository;
 		this.participantRepository = participantRepository;
+		genres = new ArrayList<>();
+		genres.add(new Genre("Drame"));
+		genres.add(new Genre("Comédie"));
+		genres.add(new Genre("Science-fiction"));
+		genres.add(new Genre("Aventure"));
+		genreRepository.saveAll(genres);
+		System.out.println("CONSTRUCTEUR");
+		mapGenres = new HashMap<Long, Genre>();
+		genres.forEach(m -> mapGenres.put((long) m.getId(), m));
 	}
 
 	public FilmServiceImpl() {
@@ -77,12 +86,12 @@ public class FilmServiceImpl implements FilmService {
 
 	public void saveFilm() {
 
-		genres = new ArrayList<>();
-		genres.add(new Genre("Drame"));
-		genres.add(new Genre("Comédie"));
-		genres.add(new Genre("Science-fiction"));
-		genres.add(new Genre("Aventure"));
-		genreRepository.saveAll(genres);
+//		genres = new ArrayList<>();
+//		genres.add(new Genre("Drame"));
+//		genres.add(new Genre("Comédie"));
+//		genres.add(new Genre("Science-fiction"));
+//		genres.add(new Genre("Aventure"));
+//		genreRepository.saveAll(genres);
 		System.out.println("SAVE FILM");
 		Genre genre = genreRepository.findById((long) 1).get();
 		List<Participant> listeActeurs = new ArrayList<Participant>();

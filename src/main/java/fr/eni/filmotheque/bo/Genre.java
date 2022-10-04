@@ -1,12 +1,8 @@
 package fr.eni.filmotheque.bo;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Genre {
@@ -15,8 +11,6 @@ public class Genre {
 	@GeneratedValue
 	private long id;
 	private String libelle;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "genre")
-	private List<Film> films;
 
 	public Genre() {
 	}
