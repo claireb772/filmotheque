@@ -1,5 +1,6 @@
 package fr.eni.filmotheque.ihm;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -28,8 +29,9 @@ public class FilmController {
 	}
 
 	@RequestMapping({ "/", "/accueil" })
-	public String films(Model model) {
+	public String films(Model model) throws SQLException {
 
+		filmService.saveFilm();
 		List<Film> films = filmService.getListFilm();
 
 		model.addAttribute("films", films);
@@ -38,9 +40,10 @@ public class FilmController {
 	}
 
 	@GetMapping("/detail/{id}")
-	public String getDetail(@PathVariable int id, Model model) {
+	public String getDetail(@PathVariable int id, Model model) throws SQLException {
 
-		Film film = filmService.getFilm(filmService.getListFilm(), id);
+		// Film film = filmService.getFilm(filmService.getListFilm(), id);
+		Film film = filmService.getFilmById(id);
 		System.out.println(film);
 		model.addAttribute("film", film);
 
@@ -57,7 +60,8 @@ public class FilmController {
 	}
 
 	@PostMapping({ "/ajouter" })
-	public String addFilm(@Valid @ModelAttribute("film") Film film, BindingResult validationResult, Model model) {
+	public String addFilm(@Valid @ModelAttribute("film") Film film, BindingResult validationResult, Model model)
+			throws SQLException {
 
 		System.out.println(film);
 
@@ -65,14 +69,16 @@ public class FilmController {
 			return "ajout";
 		}
 
-		List<Film> nfilm = filmService.getListFilm();
-		int lastId = filmService.getLastFilmId(nfilm);
+		filmService.save(film);
 
-		film.setId(lastId + 1);
-		film.setIdImage(0);
-		nfilm.add(film);
-		System.out.println(nfilm);
-		model.addAttribute("films", nfilm);
+//		List<Film> nfilm = filmService.getListFilm();
+//		int lastId = filmService.getLastFilmId(nfilm);
+//
+//		film.setId(lastId + 1);
+//		film.setImage(0);
+//		nfilm.add(film);
+//		System.out.println(nfilm);
+//		model.addAttribute("films", nfilm);
 
 		return "accueil";
 	}

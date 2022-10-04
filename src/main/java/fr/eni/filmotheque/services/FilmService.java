@@ -1,5 +1,6 @@
 package fr.eni.filmotheque.services;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import fr.eni.filmotheque.bo.Genre;
 
 public interface FilmService {
 
-	public List<Film> getListFilm();
+	public List<Film> getListFilm() throws SQLException;
 
 	public Film getFilm(List<Film> films, int id);
 
@@ -16,6 +17,12 @@ public interface FilmService {
 
 	public List<Genre> getListGenre();
 
-	public Map<Integer, Genre> getMapGenres();
+	public Map<Long, Genre> getMapGenres();
+
+	public void saveFilm();
+
+	public Film getFilmById(long id);
+
+	void save(Film film);
 
 }

@@ -1,24 +1,36 @@
 package fr.eni.filmotheque.bo;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Genre {
 
-	private int id;
+	@Id
+	@GeneratedValue
+	private long id;
 	private String libelle;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "genre")
+	private List<Film> films;
 
 	public Genre() {
 	}
 
-	public Genre(int id, String libelle) {
+	public Genre(String libelle) {
 		super();
-		this.id = id;
 		this.libelle = libelle;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

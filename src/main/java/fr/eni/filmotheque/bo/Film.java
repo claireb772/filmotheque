@@ -2,9 +2,14 @@ package fr.eni.filmotheque.bo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -29,49 +34,43 @@ public class Film {
 
 	@Length(min = 20, max = 250, message = "Le synopsis doit faire entre 20 et 250 caractères")
 	private String synopsis;
-	private int idImage;
+
+	private int image;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "FilmParticipant", joinColumns = { @JoinColumn(name = "film_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "participant_id") })
 	private List<Participant> acteurs;
 
-	@NotNull
+	// @NotNull
+	@ManyToOne
 	private Participant realisateur;
+
+	@ManyToOne
 	private Genre genre;
 
-	public Film(long id, @NotBlank(message = "Le titre est obligatoire") String titre, int annee,
+	public Film(@NotBlank(message = "Le titre est obligatoire") String titre, int annee,
 			@Min(value = 0, message = "La durée doit être supérieure à zéro") int duree,
 			@Length(min = 20, max = 250, message = "Le synopsis doit faire entre 20 et 250 caractères") String synopsis,
-			int idImage) {
+			int image) {
 		super();
-		this.id = id;
 		this.titre = titre;
 		this.annee = annee;
 		this.duree = duree;
 		this.synopsis = synopsis;
-		this.idImage = idImage;
+		this.image = image;
 	}
 
 	public Film(@NotBlank(message = "Le titre est obligatoire") String titre, int annee,
 			@Min(value = 0, message = "La durée doit être supérieure à zéro") int duree,
 			@Length(min = 20, max = 250, message = "Le synopsis doit faire entre 20 et 250 caractères") String synopsis,
-			int idImage) {
+			int image, List<Participant> acteurs, Participant realisateur, Genre genre) {
 		super();
 		this.titre = titre;
 		this.annee = annee;
 		this.duree = duree;
 		this.synopsis = synopsis;
-		this.idImage = idImage;
-	}
-
-	public Film(long id, @NotBlank(message = "Le titre est obligatoire") String titre, int annee,
-			@Min(value = 0, message = "La durée doit être supérieure à zéro") int duree,
-			@Length(min = 20, max = 250, message = "Le synopsis doit faire entre 20 et 250 caractères") String synopsis,
-			int idImage, List<Participant> acteurs, Participant realisateur, Genre genre) {
-		super();
-		this.id = id;
-		this.titre = titre;
-		this.annee = annee;
-		this.duree = duree;
-		this.synopsis = synopsis;
-		this.idImage = idImage;
+		this.image = image;
 		this.acteurs = acteurs;
 		this.realisateur = realisateur;
 		this.genre = genre;
@@ -121,12 +120,12 @@ public class Film {
 		this.synopsis = synopsis;
 	}
 
-	public int getIdImage() {
-		return idImage;
+	public int getImage() {
+		return image;
 	}
 
-	public void setIdImage(int idImage) {
-		this.idImage = idImage;
+	public void setImage(int image) {
+		this.image = image;
 	}
 
 	public List<Participant> getActeurs() {

@@ -17,8 +17,8 @@ public class ParticipantServiceImpl implements ParticipantService {
 
 	public ParticipantServiceImpl() {
 		listParticipants = new ArrayList<>();
-		listParticipants.add(new Participant(1, "Pitt", "Brad"));
-		listParticipants.add(new Participant(2, "Norton", "Edward"));
+		listParticipants.add(new Participant("Pitt", "Brad"));
+		listParticipants.add(new Participant("Norton", "Edward"));
 
 		mapParticipants = new HashMap<Integer, Participant>();
 		listParticipants.forEach(m -> mapParticipants.put((int) m.getId(), m));

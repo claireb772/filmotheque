@@ -12,7 +12,7 @@
 
 
 <div class="card" style="width: 18rem;" th:each="f: ${film}">
-  <img th:src=@{/img/{id}.jpg(id=${f.idImage})} class="card-img-top" alt="...">
+  <img th:src=@{/img/{id}.jpg(id=${f.image})} class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title" th:text="${f.titre}"></h5>
     <p class="card-text" th:text="'Réalisateur : ' + ${f.realisateur.prenom} + ' ' + ${f.realisateur.nom}"></p>

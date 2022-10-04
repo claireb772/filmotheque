@@ -67,16 +67,12 @@
 		</span>
 
 		<div class="form-group">
-			<label for="RealisateurNom">Realisateur (nom)</label> <input
-				th:field="*{realisateur.nom}" type="text" class="form-control"
-				id="realisateurNom" placeholder="Nom">
-		</div>
-
-
-		<div class="form-group">
-			<label for="RealisateurPrenom">Realisateur (prenom)</label> <input
-				th:field="*{realisateur.prenom}" type="text" class="form-control"
-				id="realisateurPrenom" placeholder="Prenom">
+			<label for="selectRealisateurs">Realisateur(s) : </label> <select
+				th:field="*{acteurs}" id="selectRealisateurs">
+				<option th:each="current : ${@acteurs}"
+					th:text=" ${current.prenom} + ' ' + ${current.nom}"
+					th:value="${current.id}"></option>
+			</select>
 		</div>
 
 

@@ -19,7 +19,7 @@ public class StringToGenreConverter implements Converter<String, Genre> {
 
 	@Override
 	public Genre convert(String id) {
-		Integer genreId = Integer.parseInt(id);
+		Long genreId = Long.parseLong(id);
 		return filmService.getMapGenres().get(genreId);
 	}
 
