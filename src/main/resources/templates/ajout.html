@@ -11,11 +11,15 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<h1>Ajouter un film</h1>
-	
+	<h1>Ajouter un film</h1> 
+	<br/>
+	<form th:action="@{/logout}" method="post">     <input type="submit" value="Log out"/></form>
+	<br/>
 	 <div sec:authorize="hasRole('USER')">Text visible to user.</div>
+	 <br/>
      <div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
-
+     <br/>
+     
 	<form th:action="@{/ajouter}" th:object=${film} method="post">
 
 		<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">

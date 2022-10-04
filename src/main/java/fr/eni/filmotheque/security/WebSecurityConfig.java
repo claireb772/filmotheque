@@ -24,7 +24,7 @@ public class WebSecurityConfig {
 
 		http.authorizeRequests().antMatchers("/", "/accueil", "/detail/*", "/img/*").permitAll().antMatchers("/ajouter")
 				.hasAnyRole("ADMIN", "USER").anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.permitAll().and().logout().permitAll();
+				.permitAll().and().logout().logoutSuccessUrl("/accueil").permitAll();
 
 		return http.build();
 	}
