@@ -6,21 +6,29 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import fr.eni.filmotheque.bo.Film;
 import fr.eni.filmotheque.bo.Genre;
 import fr.eni.filmotheque.bo.Participant;
+import fr.eni.filmotheque.bo.User;
 import fr.eni.filmotheque.dal.FilmRepository;
 import fr.eni.filmotheque.dal.GenreRepository;
 import fr.eni.filmotheque.dal.ParticipantRepository;
+import fr.eni.filmotheque.dal.UserRepository;
 
 @Configuration
 public class LotDeDonnees {
 
 	@Bean
 	public CommandLineRunner initLotDeDonnees(FilmRepository filmRepository, GenreRepository genreRepository,
-			ParticipantRepository participantRepository) {
+			ParticipantRepository participantRepository, UserRepository userRepository,
+			PasswordEncoder passwordEncoder) {
 		return (args) -> {
+
+			User user = new User("nom", "prenom", "admin", passwordEncoder().encode("admin"), true);
+			userRepository.save(user);
 
 			List<Genre> genres = new ArrayList<>();
 
@@ -81,6 +89,11 @@ public class LotDeDonnees {
 
 		};
 
+	}
+
+	private PasswordEncoder passwordEncoder() {
+		// TODO Auto-generated method stub
+		return new BCryptPasswordEncoder();
 	}
 
 }

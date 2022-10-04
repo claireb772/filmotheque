@@ -37,4 +37,9 @@ public class Avis {
 		this.commentaire = commentaire;
 	}
 
+	@Override
+	public String toString() {
+		return "Avis [id=" + id + ", note=" + note + ", commentaire=" + commentaire + "]";
+	}
+
 }
