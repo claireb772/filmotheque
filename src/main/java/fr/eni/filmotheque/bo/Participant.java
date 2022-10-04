@@ -1,6 +1,5 @@
 package fr.eni.filmotheque.bo;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,13 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Participant implements Serializable {
+public class Participant {
 
 	@Id
 	@GeneratedValue
 	private long id;
 	private String nom;
 	private String prenom;
+
 	@ManyToMany(mappedBy = "acteurs")
 	private List<Film> films;
 

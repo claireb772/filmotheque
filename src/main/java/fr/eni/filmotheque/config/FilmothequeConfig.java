@@ -16,8 +16,8 @@ public class FilmothequeConfig {
 
 	@Bean
 	@ApplicationScope
-	public List<Participant> acteurs(ParticipantService participantService) {
-		return participantService.getListParticipant();
+	public List<Participant> participants(ParticipantService participantService) {
+		return participantService.getListacteurs();
 	}
 
 	@Bean

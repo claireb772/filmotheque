@@ -1,39 +1,30 @@
 package fr.eni.filmotheque.services;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import fr.eni.filmotheque.bo.Participant;
+import fr.eni.filmotheque.dal.ParticipantRepository;
 
 @Service
 public class ParticipantServiceImpl implements ParticipantService {
 
-	private List<Participant> listParticipants;
-	private Map<Integer, Participant> mapParticipants;
+	private ParticipantRepository participantRepository;
 
-	public ParticipantServiceImpl() {
-		listParticipants = new ArrayList<>();
-		listParticipants.add(new Participant("Pitt", "Brad"));
-		listParticipants.add(new Participant("Norton", "Edward"));
-
-		mapParticipants = new HashMap<Integer, Participant>();
-		listParticipants.forEach(m -> mapParticipants.put((int) m.getId(), m));
+	public ParticipantServiceImpl(ParticipantRepository participantRepository) {
+		this.participantRepository = participantRepository;
 
 	}
 
 	@Override
-	public List<Participant> getListParticipant() {
-		return listParticipants;
+	public List<Participant> getListacteurs() {
+		return participantRepository.findAll();
 	}
 
 	@Override
-	public Map<Integer, Participant> getMapParticipants() {
-
-		return mapParticipants;
+	public Participant getParticipantByID(long id) {
+		return participantRepository.findById(id).get();
 	}
 
 }

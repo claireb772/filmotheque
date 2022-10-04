@@ -68,18 +68,24 @@
 
 		<div class="form-group">
 			<label for="selectRealisateurs">Realisateur(s) : </label> <select
-				th:field="*{acteurs}" id="selectRealisateurs">
-				<option th:each="current : ${@acteurs}"
+				th:field="*{realisateur}" id="realisateur" name="realisateur">
+				<option th:each="current : ${@participants}"
 					th:text=" ${current.prenom} + ' ' + ${current.nom}"
 					th:value="${current.id}"></option>
 			</select>
 		</div>
-
+		<span class="text-danger col-6"
+			th:if="${#fields.hasErrors('realisateur')}">
+			<ul>
+				<li th:each="erreur: ${#fields.errors('realisateur')}"
+					th:text="${erreur}"></li>
+			</ul>
+		</span>
 
 		<div class="form-group">
 			<label for="selectActors">Acteur(s) : </label> <select
 				th:field="*{acteurs}" id="selectActors" multiple>
-				<option th:each="current : ${@acteurs}"
+				<option th:each="current : ${@participants}"
 					th:text=" ${current.prenom} + ' ' + ${current.nom}"
 					th:value="${current.id}"></option>
 			</select>

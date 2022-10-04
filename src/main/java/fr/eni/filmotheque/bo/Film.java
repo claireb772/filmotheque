@@ -1,8 +1,8 @@
 package fr.eni.filmotheque.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -37,23 +37,26 @@ public class Film {
 
 	private int image;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany()
 	@JoinTable(name = "FilmParticipant", joinColumns = { @JoinColumn(name = "film_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "participant_id") })
 	private List<Participant> acteurs;
 
-	// @NotNull
+//	@NotNull(message = "Le réalisateur est obligatoire")
 	@ManyToOne
 	private Participant realisateur;
 
 	@ManyToOne
 	private Genre genre;
 
-	public Film(@NotBlank(message = "Le titre est obligatoire") String titre, int annee,
-			@Min(value = 0, message = "La durée doit être supérieure à zéro") int duree,
-			@Length(min = 20, max = 250, message = "Le synopsis doit faire entre 20 et 250 caractères") String synopsis,
-			int image) {
-		super();
+	public Film() {
+		acteurs = new ArrayList<>();
+		genre = new Genre();
+		realisateur = new Participant();
+
+	}
+
+	public Film(String titre, int annee, int duree, String synopsis, int image) {
 		this.titre = titre;
 		this.annee = annee;
 		this.duree = duree;
@@ -61,11 +64,8 @@ public class Film {
 		this.image = image;
 	}
 
-	public Film(@NotBlank(message = "Le titre est obligatoire") String titre, int annee,
-			@Min(value = 0, message = "La durée doit être supérieure à zéro") int duree,
-			@Length(min = 20, max = 250, message = "Le synopsis doit faire entre 20 et 250 caractères") String synopsis,
-			int image, List<Participant> acteurs, Participant realisateur, Genre genre) {
-		super();
+	public Film(String titre, int annee, int duree, String synopsis, int image, List<Participant> acteurs,
+			Participant realisateur, Genre genre) {
 		this.titre = titre;
 		this.annee = annee;
 		this.duree = duree;
@@ -74,10 +74,6 @@ public class Film {
 		this.acteurs = acteurs;
 		this.realisateur = realisateur;
 		this.genre = genre;
-	}
-
-	public Film() {
-		super();
 	}
 
 	public long getId() {

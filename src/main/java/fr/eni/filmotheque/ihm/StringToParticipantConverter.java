@@ -19,8 +19,8 @@ public class StringToParticipantConverter implements Converter<String, Participa
 
 	@Override
 	public Participant convert(String id) {
-		Integer participantId = Integer.parseInt(id);
-		return participantService.getMapParticipants().get(participantId);
+		long participantId = Long.parseLong(id);
+		return participantService.getParticipantByID(participantId);
 	}
 
 }
