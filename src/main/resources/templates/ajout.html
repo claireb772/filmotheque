@@ -12,6 +12,9 @@
 </head>
 <body>
 	<h1>Ajouter un film</h1>
+	
+	 <div sec:authorize="hasRole('USER')">Text visible to user.</div>
+     <div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
 
 	<form th:action="@{/ajouter}" th:object=${film} method="post">
 

@@ -1,8 +1,11 @@
 package fr.eni.filmotheque.services;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import fr.eni.filmotheque.bo.User;
@@ -14,9 +17,16 @@ public class MyUserPrincipal implements UserDetails {
 	 */
 	private static final long serialVersionUID = 1L;
 	private User user;
+	private List<GrantedAuthority> authorities;
 
 	public MyUserPrincipal(User user) {
 		this.user = user;
+		if (user.isAdmin()) {
+			this.authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"),
+					new SimpleGrantedAuthority("ROLE_ADMIN"));
+		} else {
+			this.authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+		}
 	}
 
 	public User getUser() {
@@ -29,8 +39,8 @@ public class MyUserPrincipal implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return authorities;
 	}
 
 	@Override

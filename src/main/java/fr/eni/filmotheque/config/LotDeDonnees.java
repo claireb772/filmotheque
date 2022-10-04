@@ -29,6 +29,8 @@ public class LotDeDonnees {
 
 			User user = new User("nom", "prenom", "admin", passwordEncoder().encode("admin"), true);
 			userRepository.save(user);
+			User user1 = new User("nom", "prenom", "user", passwordEncoder().encode("user"), false);
+			userRepository.save(user1);
 
 			List<Genre> genres = new ArrayList<>();
 

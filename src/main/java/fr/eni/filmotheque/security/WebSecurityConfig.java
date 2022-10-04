@@ -22,9 +22,10 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/", "/accueil", "/detail/*", "/img/*").permitAll().anyRequest()
-				.authenticated().and().formLogin().loginPage("/login").permitAll().and().logout().permitAll();
-		System.out.println("SECURITE CONFIG");
+		http.authorizeRequests().antMatchers("/", "/accueil", "/detail/*", "/img/*").permitAll().antMatchers("/ajouter")
+				.hasAnyRole("ADMIN", "USER").anyRequest().authenticated().and().formLogin().loginPage("/login")
+				.permitAll().and().logout().permitAll();
+
 		return http.build();
 	}
 
