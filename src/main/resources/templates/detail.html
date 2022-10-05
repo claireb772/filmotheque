@@ -12,15 +12,8 @@
 
 <div class="container">
 
-<div class="jumbotron jumbotron-fluid">
-<div class="container">
-    <h1 class="display-4">Liste de films !</h1>
-      	<nav class="nav">
-  <a class="nav-link active" th:href="@{/accueil}">Accueil</a>
-  <a class="nav-link" th:href="@{/ajouter}">Ajouter un film</a>
-</nav>
-  </div>
-</div>
+		<div th:insert="header::header">
+		</div>
 
 <div class="media"  th:each="f: ${film}">
   <img class="mr-3" th:src=@{/img/{id}.jpg(id=${f.image})} alt="film_poster">
